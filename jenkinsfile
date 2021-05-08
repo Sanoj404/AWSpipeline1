@@ -1,17 +1,17 @@
 pipeline {
     agent any
     tools {
-        terraform 'Terraform'
+        terraform 'terraform'
     }
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Sanoj404/12terraformprojectdemo.git'
+                git branch: 'main', credentialsId: '674db4ce-dcbd-4ecb-8fd5-95618b7317ae', url: 'https://github.com/Sanoj404/AWSpipeline1.git'
             }
         } 
         stage('Terraform Init') {
             steps {
-                sh label: '', script: 'terraform init'
+                sh 'terraform init'
             }
         }    
         stage('Terraform Plan') {
