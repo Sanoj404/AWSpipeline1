@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    tools {
+        terraform 'Terraform'
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Sanoj404/12terraformprojectdemo.git'
+            }
+        } 
+        stage('Terraform Init') {
+            steps {
+                sh label: '', script: 'terraform init'
+            }
+        }    
+        stage('Terraform Plan') {
+            steps {
+                sh label: '', script: 'terraform plan'
+            }
+        }   
+        stage('Terraform Apply') {
+            steps {
+                sh label: '', script: 'terraform apply --auto-approve'
+            }
+        }
+    }
+}  
